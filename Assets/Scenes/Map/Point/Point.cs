@@ -5,137 +5,72 @@ using UnityEngine.UI;
 
 public class Point : MonoBehaviour
 {
-    public Image[] Way;
-    public int Sloi;
+    public LineRenderer line;
+    public int[] Sloi = new int[2];
+    public int Dostyp = 0;
+    public void Prioritet()
+    {
+        if (Sloi[0] < 4)
+        {
+            for (int i = 0; i < MapBas.PointMap[Sloi[0] - 1]; i++)
+            {
+                Map.Points[Sloi[0] - 1][i].GetComponent<Button>().interactable = false;
+            }
+            for (int i = 0; i < MapBas.PointMap[Sloi[0]]; i++)
+            {
+                if (Map.Way[Sloi[0] - 1][Sloi[1] - 1][i])
+                {
+                    Map.Points[Sloi[0]][i].GetComponent<Button>().interactable = true;
+                }
+            }
+        }
+        else if(Sloi[0] < 5)
+        {
+            for (int i = 0; i < MapBas.PointMap[Sloi[0] - 1]; i++)
+            {
+                Map.Points[Sloi[0] - 1][i].GetComponent<Button>().interactable = false;
+            }
+            Map.PointsBaz[1].GetComponent<Button>().interactable = true;
+        }
+        Map.Target = transform;
+    }
     void Start()
     {
-        for (int i = 0; i < Way.Length; i++)
+        line = GetComponent<LineRenderer>();
+        if (Sloi[0] < 4 && Sloi[0] > 0)
         {
-            Way[i].enabled = false;
-        }
-        if (Sloi < 4 && Sloi > 0)
-        {
-            switch (MapBas.PointMap[Sloi - 1])
+            for(int i = 0; i < MapBas.PointMap[Sloi[0]]; i++)
             {
-                case 1:
-                    switch (MapBas.PointMap[Sloi])
-                    {
-                        case 1: Way[2].enabled = true; break;
-                        case 2:
-                            Way[1].enabled = true;
-                            Way[3].enabled = true; break;
-                        case 3:
-                            Way[0].enabled = true;
-                            Way[2].enabled = true;
-                            Way[4].enabled = true; break;
-                    }
-                    break;
-                case 2:
-                    switch (MapBas.PointMap[Sloi])
-                    {
-                        case 1: Way[2].enabled = true;
-                                Way[5].enabled = true; break;
-                        case 2:
-                            int Vozmojnost = Random.Range(1, 5);
-                            switch(Vozmojnost)
-                            {
-                                case 1: Way[3].enabled = true; break;
-                                case 2: Way[4].enabled = true; break;
-                                case 3: Way[3].enabled = true;
-                                        Way[4].enabled = true; break;
-                                default: break;
-                            }
-                            Way[1].enabled = true;
-                            Way[6].enabled = true; break;
-                        case 3:
-                            Vozmojnost = Random.Range(1, 4);
-                            switch (Vozmojnost)
-                            {
-                                case 1: Way[2].enabled = true; break;
-                                case 2: Way[5].enabled = true; break;
-                                case 3:
-                                    Way[2].enabled = true;
-                                    Way[5].enabled = true; break;
-                            }
-                            Way[0].enabled = true;
-                            Way[7].enabled = true; break;
-                    }
-                    break;
-                case 3:
-                    switch (MapBas.PointMap[Sloi])
-                    {
-                        case 1:
-                            Way[2].enabled = true;
-                            Way[5].enabled = true;
-                            Way[8].enabled = true; break;
-                        case 2:
-                            int Vozmojnost = Random.Range(1, 4);
-                            switch (Vozmojnost)
-                            {
-                                case 1: Way[4].enabled = true; break;
-                                case 2: Way[6].enabled = true; break;
-                                case 3:
-                                    Way[4].enabled = true;
-                                    Way[6].enabled = true; break;
-                            }
-                            Way[1].enabled = true;
-                            Way[9].enabled = true; break;
-                        case 3:
-                            Vozmojnost = Random.Range(1, 3);
-                            if (Vozmojnost == 1)
-                            {
-                                Way[2].enabled = true;
-                            }
-                            Vozmojnost = Random.Range(1, 3);
-                            if (Vozmojnost == 1)
-                            {
-                                Way[8].enabled = true;
-                            }
-                            Vozmojnost = Random.Range(1, 5);
-                            switch (Vozmojnost)
-                            {
-                                case 1: Way[3].enabled = true; break;
-                                case 2: Way[7].enabled = true; break;
-                                case 3:
-                                    Way[3].enabled = true;
-                                    Way[7].enabled = true; break;
-                                default: break;
-
-                            }
-                            Way[0].enabled = true;
-                            Way[5].enabled = true;
-                            Way[10].enabled = true; break;
-                    }
-                    break;
+                if (Map.Way[Sloi[0]-1][Sloi[1] - 1][i])
+                {
+                    Dostyp++;
+                }
+            }
+            line.positionCount = Dostyp*2;
+            int Verno = 0;
+            for (int i = 0; i < MapBas.PointMap[Sloi[0]]; i++)
+            {
+                if (Map.Way[Sloi[0]-1][Sloi[1] - 1][i])
+                {
+                    line.SetPosition(Verno, transform.position);
+                    line.SetPosition(1 + Verno, Map.Points[Sloi[0]][i].transform.position);
+                    Verno += 2;
+                }
             }
         }
-        if (Sloi == 0)
+        if (Sloi[0] == 0)
         {
-            switch (MapBas.PointMap[0])
+            line.positionCount = Map.Points[Sloi[0]].Length * 2;
+            for (int i = 0; i < Map.Points[Sloi[0]].Length; i++)
             {
-                case 1: Way[2].enabled = true; break;
-                case 2: Way[1].enabled = true;
-                        Way[3].enabled = true; break;
-                case 3:
-                        Way[0].enabled = true;
-                        Way[2].enabled = true;
-                        Way[4].enabled = true; break;
+                line.SetPosition(i * 2, transform.position);
+                line.SetPosition(1 + (i * 2), Map.Points[Sloi[0]][i].transform.position);
             }
         }
-        if (Sloi == 5)
+        if (Sloi[0] == 4)
         {
-            Debug.Log("Djdf");
-            switch (MapBas.PointMap[3])
-            {
-                case 1: Way[7].enabled = true; break;
-                case 2:
-                    Way[6].enabled = true;
-                    Way[8].enabled = true; break;
-                case 3:
-                    Way[5].enabled = true;
-                    Way[7].enabled = true;
-                    Way[9].enabled = true; break;
-            }
+            line.SetPosition(0, transform.position);
+            line.SetPosition(1, new Vector2(170, 498));
         }
     }
 }

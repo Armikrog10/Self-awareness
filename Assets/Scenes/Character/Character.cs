@@ -11,7 +11,8 @@ public class Character : MonoBehaviour
 
     public Button Description, Skills;
     public TMP_Text DescriptionText, SkillsText;
-    public Image Podlozka1, Podlozka2;
+    public Image Podlozka1, Podlozka2, Icon;
+    public Sprite[] Obraz = new Sprite[0];
 
     bool Skill = true;
 
@@ -25,6 +26,7 @@ public class Character : MonoBehaviour
         Dur.SetText(Parametri.gameClass[gameClassNamder].Item5.ToString());
         Char.SetText(Parametri.gameClass[gameClassNamder].Item6.ToString());
         Self.SetText(Parametri.gameClass[gameClassNamder].Item7.ToString());
+        Icon.sprite = Obraz[gameClassNamder];
         if (Skill)
         {
             Des.SetText(Parametri.ClassSkillDes[gameClassNamder]);
