@@ -1,16 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Map : MonoBehaviour
 {
     int[] PointMap = new int[4];
     public GameObject Canvas, Point, CharacterPoint;
+    public static bool perehod = false;
     public static Vector3 Target;
     public static GameObject[][] Points = new GameObject[4][];
     public static GameObject[] PointsBaz = new GameObject[2];
     public static bool[][][] Way = new bool[3][][];
+    void Ivent(int ivent_namber)
+    {
+        PlayerPrefs.SetFloat("C1", Target.x);
+        PlayerPrefs.SetFloat("C2", Target.y);
+        if(ivent_namber == 1)
+        {
+            SceneManager.LoadScene("Gospital");
+        }
+    }
     void Vivod(bool shablon)
     {
         GameObject PointStandart = new GameObject();
@@ -35,10 +46,6 @@ public class Map : MonoBehaviour
                         Points[i][0].transform.position = new Vector2(PlayerPrefs.GetFloat("X" + i + "_" + 0), PlayerPrefs.GetFloat("Y" + i + "_" + 0));
                         Points[i][0].GetComponent<Point>().Sloi[0] = i + 1;
                         Points[i][0].GetComponent<Point>().Sloi[1] = 1;
-                        if (i == 0)
-                        {
-                            Points[i][0].GetComponent<Button>().interactable = true;
-                        }
                         break;
                     case 2:
                         Points[i] = new GameObject[] { Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform) };
@@ -47,10 +54,6 @@ public class Map : MonoBehaviour
                             Points[i][j].transform.position = new Vector2(PlayerPrefs.GetFloat("X" + i + "_" + j), PlayerPrefs.GetFloat("Y" + i + "_" + j));
                             Points[i][j].GetComponent<Point>().Sloi[0] = i + 1;
                             Points[i][j].GetComponent<Point>().Sloi[1] = j + 1;
-                            if (i == 0)
-                            {
-                                Points[i][j].GetComponent<Button>().interactable = true;
-                            }
                         }
                         break;
                     case 3:
@@ -60,14 +63,24 @@ public class Map : MonoBehaviour
                             Points[i][j].transform.position = new Vector2(PlayerPrefs.GetFloat("X" + i + "_" + j), PlayerPrefs.GetFloat("Y" + i + "_" + j));
                             Points[i][j].GetComponent<Point>().Sloi[0] = i + 1;
                             Points[i][j].GetComponent<Point>().Sloi[1] = j + 1;
-                            if (i == 0)
-                            {
-                                Points[i][j].GetComponent<Button>().interactable = true;
-                            }
                         }
                         break;
                 }
                 MapBas.gotovo++;
+            }
+            if (MapBas.ÑurrentPoint[0] < 4)
+            {
+                for (int i = 0; i < MapBas.PointMap[MapBas.ÑurrentPoint[0]]; i++)
+                {
+                    if (Way[MapBas.ÑurrentPoint[0] - 1][MapBas.ÑurrentPoint[1] - 1][i])
+                    {
+                        Points[MapBas.ÑurrentPoint[0]][i].GetComponent<Button>().interactable = true;
+                    }
+                }
+            }
+            else if (MapBas.ÑurrentPoint[0] < 5)
+            {
+                PointsBaz[1].GetComponent<Button>().interactable = true;
             }
         }
         else
@@ -235,6 +248,11 @@ public class Map : MonoBehaviour
         if(CharacterPoint.transform.position != Target)
         {
             CharacterPoint.transform.position = Vector3.MoveTowards(CharacterPoint.transform.position, Target, 100 * Time.deltaTime);
+        }
+        else if(perehod)
+        {
+            Ivent(1);
+            perehod = false;
         }
     }
 }

@@ -16,13 +16,6 @@ public class Point : MonoBehaviour
             {
                 Map.Points[Sloi[0] - 1][i].GetComponent<Button>().interactable = false;
             }
-            for (int i = 0; i < MapBas.PointMap[Sloi[0]]; i++)
-            {
-                if (Map.Way[Sloi[0] - 1][Sloi[1] - 1][i])
-                {
-                    Map.Points[Sloi[0]][i].GetComponent<Button>().interactable = true;
-                }
-            }
         }
         else if(Sloi[0] < 5)
         {
@@ -30,9 +23,10 @@ public class Point : MonoBehaviour
             {
                 Map.Points[Sloi[0] - 1][i].GetComponent<Button>().interactable = false;
             }
-            Map.PointsBaz[1].GetComponent<Button>().interactable = true;
         }
         Map.Target = transform.position;
+        Map.perehod = true;
+        MapBas.ÑurrentPoint = Sloi;
     }
     void Start()
     {
