@@ -32,7 +32,7 @@ public class Point : MonoBehaviour
             }
             Map.PointsBaz[1].GetComponent<Button>().interactable = true;
         }
-        Map.Target = transform;
+        Map.Target = transform.position;
     }
     void Start()
     {

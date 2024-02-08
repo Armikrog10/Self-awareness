@@ -7,11 +7,11 @@ public class Map : MonoBehaviour
 {
     int[] PointMap = new int[4];
     public GameObject Canvas, Point, CharacterPoint;
-    public static Transform Target;
+    public static Vector3 Target;
     public static GameObject[][] Points = new GameObject[4][];
     public static GameObject[] PointsBaz = new GameObject[2];
     public static bool[][][] Way = new bool[3][][];
-    void Vivod()
+    void Vivod(bool shablon)
     {
         GameObject PointStandart = new GameObject();
         for (int i = 0; i < 2; i++)
@@ -19,18 +19,20 @@ public class Map : MonoBehaviour
             PointsBaz[i] = Instantiate(Point, Canvas.transform);
             switch (i)
             {
-                case 0: PointsBaz[i].transform.position = new Vector2(170, 82);
-                        Target = PointsBaz[i].transform; break;
+                case 0: PointsBaz[i].transform.position = new Vector2(170, 82); break;
                 case 1: PointsBaz[i].transform.position = new Vector2(170, 498); break;
             }
             PointsBaz[i].GetComponent<Point>().Sloi[0] = i * 5;
         }
-        for (int i = 3; i > -1; i--)
+        if(shablon)
         {
-            switch (MapBas.PointMap[i])
+            for (int i = 3; i > -1; i--)
             {
-                case 1: Points[i] = new GameObject[] {Instantiate(Point, Canvas.transform)}; 
-                        Points[i][0].transform.position = new Vector2(150 + Random.Range(0, 41), 155 + (76 * i) + Random.Range(0, 21));
+                switch (MapBas.PointMap[i])
+                {
+                    case 1:
+                        Points[i] = new GameObject[] { Instantiate(Point, Canvas.transform) };
+                        Points[i][0].transform.position = new Vector2(PlayerPrefs.GetFloat("X" + i + "_" + 0), PlayerPrefs.GetFloat("Y" + i + "_" + 0));
                         Points[i][0].GetComponent<Point>().Sloi[0] = i + 1;
                         Points[i][0].GetComponent<Point>().Sloi[1] = 1;
                         if (i == 0)
@@ -38,10 +40,11 @@ public class Map : MonoBehaviour
                             Points[i][0].GetComponent<Button>().interactable = true;
                         }
                         break;
-                case 2: Points[i] = new GameObject[] {Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform)};
+                    case 2:
+                        Points[i] = new GameObject[] { Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform) };
                         for (int j = 0; j < 2; j++)
                         {
-                            Points[i][j].transform.position = new Vector2(108 + (82*j) + Random.Range(0, 41), 155 + (76 * i) + Random.Range(0, 21));
+                            Points[i][j].transform.position = new Vector2(PlayerPrefs.GetFloat("X" + i + "_" + j), PlayerPrefs.GetFloat("Y" + i + "_" + j));
                             Points[i][j].GetComponent<Point>().Sloi[0] = i + 1;
                             Points[i][j].GetComponent<Point>().Sloi[1] = j + 1;
                             if (i == 0)
@@ -50,7 +53,54 @@ public class Map : MonoBehaviour
                             }
                         }
                         break;
-                case 3: Points[i] = new GameObject[] {Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform)};
+                    case 3:
+                        Points[i] = new GameObject[] { Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform) };
+                        for (int j = 0; j < 3; j++)
+                        {
+                            Points[i][j].transform.position = new Vector2(PlayerPrefs.GetFloat("X" + i + "_" + j), PlayerPrefs.GetFloat("Y" + i + "_" + j));
+                            Points[i][j].GetComponent<Point>().Sloi[0] = i + 1;
+                            Points[i][j].GetComponent<Point>().Sloi[1] = j + 1;
+                            if (i == 0)
+                            {
+                                Points[i][j].GetComponent<Button>().interactable = true;
+                            }
+                        }
+                        break;
+                }
+                MapBas.gotovo++;
+            }
+        }
+        else
+        {
+            for (int i = 3; i > -1; i--)
+            {
+                switch (MapBas.PointMap[i])
+                {
+                    case 1:
+                        Points[i] = new GameObject[] { Instantiate(Point, Canvas.transform) };
+                        Points[i][0].transform.position = new Vector2(150 + Random.Range(0, 41), 155 + (76 * i) + Random.Range(0, 21));
+                        Points[i][0].GetComponent<Point>().Sloi[0] = i + 1;
+                        Points[i][0].GetComponent<Point>().Sloi[1] = 1;
+                        if (i == 0)
+                        {
+                            Points[i][0].GetComponent<Button>().interactable = true;
+                        }
+                        break;
+                    case 2:
+                        Points[i] = new GameObject[] { Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform) };
+                        for (int j = 0; j < 2; j++)
+                        {
+                            Points[i][j].transform.position = new Vector2(108 + (82 * j) + Random.Range(0, 41), 155 + (76 * i) + Random.Range(0, 21));
+                            Points[i][j].GetComponent<Point>().Sloi[0] = i + 1;
+                            Points[i][j].GetComponent<Point>().Sloi[1] = j + 1;
+                            if (i == 0)
+                            {
+                                Points[i][j].GetComponent<Button>().interactable = true;
+                            }
+                        }
+                        break;
+                    case 3:
+                        Points[i] = new GameObject[] { Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform), Instantiate(Point, Canvas.transform) };
                         for (int j = 0; j < 3; j++)
                         {
                             Points[i][j].transform.position = new Vector2(65 + (85 * j) + Random.Range(0, 41), 155 + (76 * i) + Random.Range(0, 21));
@@ -62,6 +112,16 @@ public class Map : MonoBehaviour
                             }
                         }
                         break;
+                }
+                MapBas.gotovo++;
+            }
+            for (int i = 3;i > -1; i--)
+            {
+                for (int j = 0; j < Points[i].Length; j++)
+                {
+                    PlayerPrefs.SetFloat("X" + i + "_" + j, Points[i][j].transform.position.x);
+                    PlayerPrefs.SetFloat("Y" + i + "_" + j, Points[i][j].transform.position.y);
+                }
             }
         }
     }
@@ -153,22 +213,28 @@ public class Map : MonoBehaviour
     }
     void Start()
     {
-        if (MapBas.gotovo < 4)
+        
+        if (MapBas.gotovo < 3)
         {
             Bild();
+            Vivod(false);
+            Target = PointsBaz[0].transform.position;
         }
-        Vivod();
+        else
+        {
+            Target = new Vector3(PlayerPrefs.GetFloat("C1"), PlayerPrefs.GetFloat("C2"), 0);
+            Vivod(true);
+        }
         CharacterPoint = Instantiate(CharacterPoint, Canvas.transform);
-        CharacterPoint.transform.position = Target.position;
-        //Debug.Log(Player.gameClass);
+        CharacterPoint.transform.position = Target;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(CharacterPoint.transform.position != Target.position)
+        if(CharacterPoint.transform.position != Target)
         {
-            CharacterPoint.transform.position = Vector3.MoveTowards(CharacterPoint.transform.position, Target.position, 100 * Time.deltaTime);
+            CharacterPoint.transform.position = Vector3.MoveTowards(CharacterPoint.transform.position, Target, 100 * Time.deltaTime);
         }
     }
 }
