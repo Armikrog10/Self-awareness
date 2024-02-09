@@ -13,14 +13,11 @@ public class Map : MonoBehaviour
     public static GameObject[][] Points = new GameObject[4][];
     public static GameObject[] PointsBaz = new GameObject[2];
     public static bool[][][] Way = new bool[3][][];
-    void Ivent(int ivent_namber)
+   void Ivent(string ivent_name)//Запись позиции игрока и загрузка сцены
     {
         PlayerPrefs.SetFloat("C1", Target.x);
         PlayerPrefs.SetFloat("C2", Target.y);
-        if(ivent_namber == 1)
-        {
-            SceneManager.LoadScene("Gospital");
-        }
+        SceneManager.LoadScene(ivent_name);
     }
     void Vivod(bool shablon)
     {
@@ -35,7 +32,7 @@ public class Map : MonoBehaviour
             }
             PointsBaz[i].GetComponent<Point>().Sloi[0] = i * 5;
         }
-        if(shablon)
+        if(shablon) //Загруска карты происходит в установки Vector2
         {
             for (int i = 3; i > -1; i--)
             {
@@ -130,7 +127,7 @@ public class Map : MonoBehaviour
             }
             for (int i = 3;i > -1; i--)
             {
-                for (int j = 0; j < Points[i].Length; j++)
+                for (int j = 0; j < Points[i].Length; j++) //Запись карты
                 {
                     PlayerPrefs.SetFloat("X" + i + "_" + j, Points[i][j].transform.position.x);
                     PlayerPrefs.SetFloat("Y" + i + "_" + j, Points[i][j].transform.position.y);
@@ -251,7 +248,7 @@ public class Map : MonoBehaviour
         }
         else if(perehod)
         {
-            Ivent(1);
+            Ivent("Gospital");
             perehod = false;
         }
     }
