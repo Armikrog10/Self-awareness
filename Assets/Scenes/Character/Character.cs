@@ -92,6 +92,8 @@ public class Character : MonoBehaviour
         Player.DurStat = Parametri.gameClass[gameClassNamder].Item5;
         Player.CharStat = Parametri.gameClass[gameClassNamder].Item6;
         Player.Self = Parametri.gameClass[gameClassNamder].Item7;
+        Player.HpMax = Player.HpStat * 10;
+        Player.Hp = Player.HpMax;
     }
     public void Nazad()
     {

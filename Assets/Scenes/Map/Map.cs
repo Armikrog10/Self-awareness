@@ -19,6 +19,10 @@ public class Map : MonoBehaviour
         PlayerPrefs.SetFloat("C2", Target.y);
         SceneManager.LoadScene(ivent_name);
     }
+    public void Inventar()
+    {
+        Ivent("Inventar");
+    }
     void Vivod(bool shablon)
     {
         GameObject PointStandart = new GameObject();
@@ -65,7 +69,7 @@ public class Map : MonoBehaviour
                 }
                 MapBas.gotovo++;
             }
-            if (MapBas.ÑurrentPoint[0] < 4)
+            if (MapBas.ÑurrentPoint[0] < 4 && MapBas.ÑurrentPoint[0] > 0)
             {
                 for (int i = 0; i < MapBas.PointMap[MapBas.ÑurrentPoint[0]]; i++)
                 {
@@ -73,6 +77,13 @@ public class Map : MonoBehaviour
                     {
                         Points[MapBas.ÑurrentPoint[0]][i].GetComponent<Button>().interactable = true;
                     }
+                }
+            }
+            else if (MapBas.ÑurrentPoint[0] == 0)
+            {
+                for (int i = 0; i < MapBas.PointMap[0]; i++)
+                {
+                    Points[0][i].GetComponent<Button>().interactable = true;
                 }
             }
             else if (MapBas.ÑurrentPoint[0] < 5)
@@ -246,7 +257,7 @@ public class Map : MonoBehaviour
         {
             CharacterPoint.transform.position = Vector3.MoveTowards(CharacterPoint.transform.position, Target, 100 * Time.deltaTime);
         }
-        else if(perehod)
+        else if(perehod && Target.x != 170)
         {
             Ivent("Gospital");
             perehod = false;

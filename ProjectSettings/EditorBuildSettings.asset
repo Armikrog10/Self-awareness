@@ -16,5 +16,8 @@ EditorBuildSettings:
     guid: ef9ec8ce6e5d04f409d18a5236b81e1e
   - enabled: 1
     path: Assets/Scenes/Ivent/Gospital/Gospital.unity
-    guid: 543bab06741fc0a45a2b98aac3c7d572
+    guid: 9cf6c192ce8ed324099e36e117b8ad9d
+  - enabled: 1
+    path: Assets/Scenes/Map/Inventar/Inventar.unity
+    guid: 6d0eb42faab25974a8218976cb1a903f
   m_configObjects: {}

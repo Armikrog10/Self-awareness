@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Back : MonoBehaviour
 {
-    public static void Nachalo()
+   public void Back_Map()
     {
         SceneManager.LoadScene("Map");
     }
