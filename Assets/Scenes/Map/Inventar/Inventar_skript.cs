@@ -7,8 +7,11 @@ using UnityEngine.UI;
 
 public class Inventar_skript : MonoBehaviour
 {
+    public Image icon;
     public Image[] icheika = new Image[5];
     public Sprite[] tip_icheika = new Sprite[4];
+    public Sprite[] predmet_sprite = new Sprite[4];
+    public Sprite non;
     public Button v, n;
     public TMP_Text name_predmet;
     int nomer_predmeta = 0, pusto = 0;
@@ -53,6 +56,7 @@ public class Inventar_skript : MonoBehaviour
         nomer_predmeta = Ne_Pusto_V();
         icheika[nomer_predmeta].sprite = tip_icheika[3];
         name_predmet.text = Player.inventar[nomer_predmeta];
+        icon.sprite = predmet_sprite[Array.IndexOf(Parametri.predmet, Player.inventar[nomer_predmeta])];
     }
     public void nazad()
     {
@@ -60,10 +64,15 @@ public class Inventar_skript : MonoBehaviour
         nomer_predmeta = Ne_Pusto_N();
         icheika[nomer_predmeta].sprite = tip_icheika[3];
         name_predmet.text = Player.inventar[nomer_predmeta];
+        icon.sprite = predmet_sprite[Array.IndexOf(Parametri.predmet, Player.inventar[nomer_predmeta])];
     }
     private void Start()
     {
         name_predmet.text = Player.inventar[nomer_predmeta];
+        if (Player.inventar[nomer_predmeta] != null)
+        {
+            icon.sprite = predmet_sprite[Array.IndexOf(Parametri.predmet, Player.inventar[nomer_predmeta])];
+        }
         for (int i = 0; i < 5; i++)
         {
             if (Player.inventar[i] != null)

@@ -35,29 +35,38 @@ public class Ivent_script : MonoBehaviour
             SceneManager.LoadScene("Map");
         }
         drop_button();
-        if (variant == 1 && iteracia.Count == 0)
+        if (variant == 1)
         {
-            iteracia.Add(0);//заглушка!!!!!!!!!1
-            string Text_soob = "Вы нашли: ";
-            int kol_predmetov = Player.Proverka_Ydachi(new int[]{30, 50, 18, 2});
-            List<string> predmeti = new List<string>();
-            for (int i = 0; i < kol_predmetov+1; i++)
+            switch(iteracia.Count)
             {
-                int random_predmet = Random.Range(0, 4);
-                predmeti.Add(Parametri.predmet[random_predmet]);
-                if(i < kol_predmetov)
-                {
-                    Text_soob += Parametri.predmet[random_predmet] + ", ";
-                }
-                else
-                {
-                    Text_soob += Parametri.predmet[random_predmet];
-                }
+                case 0:
+                    iteracia.Add(0);
+                    string Text_soob = "Вы нашли: ";
+                    int kol_predmetov = Player.Proverka_Ydachi(new int[] { 30, 50, 18, 2 });
+                    string[] predmeti = new string[5];
+                    for (int i = 0; i < kol_predmetov + 1; i++)
+                    {
+                        int random_predmet = Random.Range(0, 4);
+                        predmeti[i] = Parametri.predmet[random_predmet];
+                        if (i < kol_predmetov)
+                        {
+                            Text_soob += Parametri.predmet[random_predmet] + ", ";
+                        }
+                        else
+                        {
+                            Text_soob += Parametri.predmet[random_predmet];
+                        }
+                    }
+                    Player.nahodki = predmeti;
+                    Sobitie.text = Text_soob;
+                    active_button(2);
+                    Deistvie_text[0].text = "> Взять";
+                    Deistvie_text[1].text = "> Уйти"; 
+                break;
+                case 1:
+                    SceneManager.LoadScene("Nahodki"); 
+                break;
             }
-            Player.Add_Inventar(predmeti);
-            Sobitie.text = Text_soob;
-            active_button(1);
-            Deistvie_text[0].text = "> Уйти";
         }
     }
     public void Vibor2()
@@ -79,7 +88,7 @@ public class Ivent_script : MonoBehaviour
                 case 1:
                     Sobitie.text = "Медсестра застыла после ваших слов, но после медленно кивнула вам\nЗдоровье восполнено до максимума";
                     active_button(1);
-                    Deistvie_text[0].text = "> Далее"; break;
+                    Deistvie_text[0].text = "> Уйти"; break;
             }
         }
     }

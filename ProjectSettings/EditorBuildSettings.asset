@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map/Inventar/Inventar.unity
     guid: 6d0eb42faab25974a8218976cb1a903f
+  - enabled: 1
+    path: Assets/Scenes/Map/Inventar/Nahodki.unity
+    guid: 9048a700250cb854db7d97cc71956390
   m_configObjects: {}
