@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map/Inventar/Nahodki.unity
     guid: 9048a700250cb854db7d97cc71956390
+  - enabled: 1
+    path: Assets/Scenes/Map/Inventar/Yslygi.unity
+    guid: 05419fa269224704184ae6c1c684ac0b
   m_configObjects: {}

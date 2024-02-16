@@ -48,4 +48,25 @@ public class Parametri : MonoBehaviour
         "СКС",
         "Мушкетон"
     };
+    //перечень услуг
+    public static string[] yslygi =
+    {
+        "Лечение"
+    };
+    public static void Actions(string action)
+    {
+        switch(action)
+        {
+            case "Лечение":
+                if(Player.Hp + 50 <= Player.HpMax)
+                {
+                    Player.Hp += 50;
+                }
+                else
+                {
+                    Player.Hp = Player.HpMax;
+                }
+            break;
+        }
+    }
 }

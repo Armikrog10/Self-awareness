@@ -40,32 +40,92 @@ public class Ivent_script : MonoBehaviour
             switch(iteracia.Count)
             {
                 case 0:
-                    iteracia.Add(0);
-                    string Text_soob = "Вы нашли: ";
-                    int kol_predmetov = Player.Proverka_Ydachi(new int[] { 30, 50, 18, 2 });
-                    string[] predmeti = new string[5];
-                    for (int i = 0; i < kol_predmetov + 1; i++)
+                    int podVariant = Random.Range(0, 3);
+                    if (podVariant == 1)
                     {
-                        int random_predmet = Random.Range(0, 4);
-                        predmeti[i] = Parametri.predmet[random_predmet];
-                        if (i < kol_predmetov)
+                        iteracia.Add(podVariant);
+                        string Text_soob = "Вы нашли: ";
+                        int kol_predmetov = Player.Proverka_Ydachi(new int[] { 30, 50, 18, 2 });
+                        string[] predmeti = new string[5];
+                        for (int i = 0; i < kol_predmetov + 1; i++)
                         {
-                            Text_soob += Parametri.predmet[random_predmet] + ", ";
+                            int random_predmet = Random.Range(0, 4);
+                            predmeti[i] = Parametri.predmet[random_predmet];
+                            if (i < kol_predmetov)
+                            {
+                                Text_soob += Parametri.predmet[random_predmet] + ", ";
+                            }
+                            else
+                            {
+                                Text_soob += Parametri.predmet[random_predmet];
+                            }
                         }
-                        else
-                        {
-                            Text_soob += Parametri.predmet[random_predmet];
-                        }
+                        Player.nahodki = predmeti;
+                        Sobitie.text = Text_soob;
+                        active_button(2);
+                        Deistvie_text[0].text = "> Взять";
+                        Deistvie_text[1].text = "> Уйти";
                     }
-                    Player.nahodki = predmeti;
-                    Sobitie.text = Text_soob;
-                    active_button(2);
-                    Deistvie_text[0].text = "> Взять";
-                    Deistvie_text[1].text = "> Уйти"; 
+                    else if(podVariant == 0)
+                    {
+                        iteracia.Add(podVariant);
+                        Sobitie.text = "Вы ничего не нашли";
+                        active_button(1);
+                        Deistvie_text[0].text = "> Уйти";
+                    }
+                    else if(podVariant == 2)
+                    {
+                        iteracia.Add(podVariant);
+                        string Text_soob = "Вы нашли: ";
+                        int kol_predmetov = Player.Proverka_Ydachi(new int[] { 30, 50, 18, 2 });
+                        string[] predmeti = new string[5];
+                        for (int i = 0; i < kol_predmetov + 1; i++)
+                        {
+                            int random_predmet = Random.Range(0, 4);
+                            predmeti[i] = Parametri.predmet[random_predmet];
+                            if (i < kol_predmetov)
+                            {
+                                Text_soob += Parametri.predmet[random_predmet] + ", ";
+                            }
+                            else
+                            {
+                                Text_soob += Parametri.predmet[random_predmet];
+                            }
+                        }
+                        Player.nahodki = predmeti;
+                        Sobitie.text = Text_soob + "\nНо вас обнаруживает полоумная медсестра и бросается на вас";
+                        active_button(2);
+                        Deistvie_text[0].text = "> Сбежать, бросив медикоменты";
+                        Deistvie_text[1].text = "> Принять бой";
+                    }
                 break;
                 case 1:
-                    SceneManager.LoadScene("Nahodki"); 
+                    if (iteracia[iteracia.Count-1] == 1)
+                    {
+                        SceneManager.LoadScene("Nahodki");
+                    }
+                    else if(iteracia[iteracia.Count - 1] == 2)
+                    {
+                        SceneManager.LoadScene("Map");
+                    }
                 break;
+            }
+        }
+        else if(variant == 0)
+        {
+            switch (iteracia.Count)
+            {
+                case 0:
+                    iteracia.Add(0);
+                    Sobitie.text = "Медсестра готова применить на вас остатки своих врачевательных навыков в обмен на ваши вещи";
+                    Player.yslyga = "Лечение";
+                    active_button(2);
+                    Deistvie_text[0].text = "> Торговаться";
+                    Deistvie_text[1].text = "> Уйти";
+                    break;
+                case 1:
+                    SceneManager.LoadScene("Yslygi");
+                    break;
             }
         }
     }
@@ -87,6 +147,7 @@ public class Ivent_script : MonoBehaviour
                     Deistvie_text[0].text = "> Далее"; break;
                 case 1:
                     Sobitie.text = "Медсестра застыла после ваших слов, но после медленно кивнула вам\nЗдоровье восполнено до максимума";
+                    Player.Hp = Player.HpMax;
                     active_button(1);
                     Deistvie_text[0].text = "> Уйти"; break;
             }
@@ -111,7 +172,7 @@ public class Ivent_script : MonoBehaviour
             Deistvie_text[1].text = "> Попросить о бескорыстном лечении";
             Deistvie_text[2].text = "> Уйти";
         }
-        if (variant == 1)
+        else if (variant == 1)
         {
             Sobitie.text = "Старый госпиталь, в котором давно никого нет";
             active_button(2);

@@ -8,15 +8,18 @@ public class Player : MonoBehaviour
     public static string[] inventar = new string[5];
     public static int Hp,HpMax;
     public static string[] nahodki = new string[5];
+    public static string yslyga = null;
     public static int Proverka_Ydachi(int[] varianti)
     {
+        int procent = 100;
         for(int i = 0;i<varianti.Length;i++) 
         {
-            int Rand = Random.Range(0, 100);
+            int Rand = Random.Range(0, procent);
             if(Rand <= varianti[i])
             {
                 return (i);
             }
+            procent -= varianti[i];
         }
         return 0;
     }

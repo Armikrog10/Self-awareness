@@ -436,6 +436,7 @@ MonoBehaviour:
   non: {fileID: 21300000, guid: a10847b484fb8e44e8bdf62a13504075, type: 3}
   v: {fileID: 647434865}
   n: {fileID: 1219530578}
+  vikinyt: {fileID: 639443875}
   name_predmet: {fileID: 748042052}
 --- !u!114 &243854184
 MonoBehaviour:
@@ -1144,9 +1145,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Character, Assembly-CSharp
-        m_MethodName: Nazad
+      - m_Target: {fileID: 243854183}
+        m_TargetAssemblyTypeName: Inventar_skript, Assembly-CSharp
+        m_MethodName: Vikinyt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1279,8 +1280,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 243854183}
         m_TargetAssemblyTypeName: Inventar_skript, Assembly-CSharp
-        m_MethodName: vperod
-        m_Mode: 1
+        m_MethodName: strelka
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2137,15 +2138,15 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 243854183}
         m_TargetAssemblyTypeName: Inventar_skript, Assembly-CSharp
-        m_MethodName: nazad
-        m_Mode: 1
+        m_MethodName: strelka
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1219530579
 MonoBehaviour:
@@ -2377,7 +2378,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u044B\u0431\u0440\u043E\u0441"
+  m_text: "\u0412\u044B\u043A\u0438\u043D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3308a9a13422435418d710d61581017e, type: 2}
   m_sharedMaterial: {fileID: 501996488462011904, guid: 3308a9a13422435418d710d61581017e, type: 2}

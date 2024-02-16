@@ -175,6 +175,7 @@ public class Nahodki_skript : MonoBehaviour
                     name_predmet2.text = Player.inventar[i];
                     icon2.sprite = predmet_sprite[Array.IndexOf(Parametri.predmet, Player.inventar[i])];
                     icheika2[i].sprite = tip_icheika[3];
+                    nomer_predmeta2 = i;
                     flag1 = true;
                 }
             }
@@ -193,6 +194,7 @@ public class Nahodki_skript : MonoBehaviour
                     name_predmet1.text = Player.nahodki[i];
                     icon1.sprite = predmet_sprite[Array.IndexOf(Parametri.predmet, Player.nahodki[i])];
                     icheika1[i].sprite = tip_icheika[3];
+                    nomer_predmeta1 = i;
                     flag2 = true;
                 }
             }
