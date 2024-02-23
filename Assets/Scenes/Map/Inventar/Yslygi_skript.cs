@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class Yslygi_skript : MonoBehaviour
 {
     public Image icon1, icon2;
-    public Image[] icheika = new Image[5];
-    public Sprite[] tip_icheika = new Sprite[4];
-    public Sprite[] predmet_sprite = new Sprite[4];
-    public Sprite[] yslyga_sprite = new Sprite[1];
+    public Image[] icheika;
+    public Sprite[] tip_icheika;
+    public Sprite[] predmet_sprite;
+    public Sprite[] yslyga_sprite;
     public Sprite non;
     public TMP_Text name_predmet1, name_predmet2;
     public Button v, n, obmen;

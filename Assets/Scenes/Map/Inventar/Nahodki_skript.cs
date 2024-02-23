@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class Nahodki_skript : MonoBehaviour
 {
     public Image icon1, icon2;
-    public Image[] icheika1 = new Image[5];
-    public Image[] icheika2 = new Image[5];
-    public Sprite[] tip_icheika = new Sprite[4];
-    public Sprite[] predmet_sprite = new Sprite[4];
+    public Image[] icheika1;
+    public Image[] icheika2;
+    public Sprite[] tip_icheika;
+    public Sprite[] predmet_sprite;
     public Sprite non;
     public TMP_Text name_predmet1, name_predmet2;
     public Button v1, n1, v2, n2, vzat, vikinyt;

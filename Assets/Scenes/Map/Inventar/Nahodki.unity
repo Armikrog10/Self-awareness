@@ -3427,6 +3427,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 21aa2a90187d00b4d89ed41d9515a00a, type: 3}
   - {fileID: 21300000, guid: 2115eb4565737384cbd483e5b2d6a51a, type: 3}
   - {fileID: 21300000, guid: f58474b76758fba4a844c8baeb145647, type: 3}
+  - {fileID: 21300000, guid: 10589521c482557438fcab28f8425e34, type: 3}
+  - {fileID: 21300000, guid: 3d2856a958b390f45b0eee4b9454ef90, type: 3}
   non: {fileID: 21300000, guid: a10847b484fb8e44e8bdf62a13504075, type: 3}
   name_predmet1: {fileID: 1485297453}
   name_predmet2: {fileID: 556924096}

@@ -9,4 +9,8 @@ public class Back : MonoBehaviour
     {
         SceneManager.LoadScene("Map");
     }
+    public void Batle()
+    {
+        SceneManager.LoadScene("Batle");
+    }
 }

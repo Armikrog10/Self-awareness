@@ -94,6 +94,14 @@ public class Character : MonoBehaviour
         Player.Self = Parametri.gameClass[gameClassNamder].Item7;
         Player.HpMax = Player.HpStat * 10;
         Player.Hp = Player.HpMax;
+        switch(gameClassNamder)
+        {
+            case 0:
+                Player.inventar = new string[] {"Мосинка", "Штык", null, null, null};
+                Player.weapon = "Мосинка";
+                Player.boepripas = 5;
+                break;
+        }
     }
     public void Nazad()
     {

@@ -11,8 +11,8 @@ public class Ivent_script : MonoBehaviour
     int variant = 0;
     List<int> iteracia = new List<int>();
     public TMP_Text Sobitie;
-    public TMP_Text[] Deistvie_text = new TMP_Text[3];
-    public Button[] Deistvie = new Button[3];
+    public TMP_Text[] Deistvie_text;
+    public Button[] Deistvie;
     void drop_button()
     {
         for (int i = 0; i < 3; i++)
@@ -150,6 +150,15 @@ public class Ivent_script : MonoBehaviour
                     Player.Hp = Player.HpMax;
                     active_button(1);
                     Deistvie_text[0].text = "> Уйти"; break;
+            }
+        }
+        else if(variant == 1)
+        {
+            switch(iteracia.Count)
+            {
+                case 1:
+                    Batle_skript.enemy.Add("Полоумная медсестра");
+                    SceneManager.LoadScene("Batle"); break;
             }
         }
     }

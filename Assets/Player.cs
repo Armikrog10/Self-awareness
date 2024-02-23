@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public static int Hp,HpMax;
     public static string[] nahodki = new string[5];
     public static string yslyga = null;
+    public static string weapon;
+    public static int boepripas;
     public static int Proverka_Ydachi(int[] varianti)
     {
         int procent = 100;

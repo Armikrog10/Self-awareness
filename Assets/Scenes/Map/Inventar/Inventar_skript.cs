@@ -9,9 +9,9 @@ using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 public class Inventar_skript : MonoBehaviour
 {
     public Image icon;
-    public Image[] icheika = new Image[5];
-    public Sprite[] tip_icheika = new Sprite[4];
-    public Sprite[] predmet_sprite = new Sprite[4];
+    public Image[] icheika;
+    public Sprite[] tip_icheika;
+    public Sprite[] predmet_sprite;
     public Sprite non;
     public Button v, n,vikinyt;
     public TMP_Text name_predmet;
@@ -99,9 +99,9 @@ public class Inventar_skript : MonoBehaviour
         {
             icon.sprite = predmet_sprite[Array.IndexOf(Parametri.predmet, Player.inventar[nomer_predmeta])];
         }
+        bool flag = false;
         for (int i = 0; i < 5; i++)
         {
-            bool flag = false;
             if (Player.inventar[i] is not null)
             {
                 if (flag)

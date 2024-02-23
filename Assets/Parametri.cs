@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Parametri : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class Parametri : MonoBehaviour
         "Ñòèìóëÿòîğ",
         "Ïàêåò êğîâè",
         "Àïòå÷êà",
+        "Øòûê",
         "Ìîñèíêà",
         "ÑÂÒ",
         "Áåğäàíêà",
@@ -53,6 +55,7 @@ public class Parametri : MonoBehaviour
     {
         "Ëå÷åíèå"
     };
+    //âûïîëíåíèå óñëóã
     public static void Actions(string action)
     {
         switch(action)
@@ -68,5 +71,33 @@ public class Parametri : MonoBehaviour
                 }
             break;
         }
+    }
+    //ïåğå÷åíü âğàãîâ
+    public static string[] enemy =
+    {
+        "Ïîëîóìíàÿ ìåäñåñòğà"
+    };
+    //ïîèñê ïàğàìåòğîâ ïğåäìåòà
+    public static int Parametr(string predmet,int parametr)
+    {
+        switch(Array.IndexOf(Parametri.predmet, predmet))
+        {
+            case > 3 and <= 8:
+                for (int i = 0; i<weapons.Length;i++)
+                {
+                    if (weapons[i].Item1 == predmet)
+                    {
+                        switch(parametr)
+                        {
+                            case 1: return (weapons[i].Item2);
+                            case 2: return (weapons[i].Item3);
+                            case 3: return (weapons[i].Item4);
+                            case 4: return (weapons[i].Item5);
+                        }
+                    }
+                }
+            break;
+        }
+        return 0;
     }
 }
