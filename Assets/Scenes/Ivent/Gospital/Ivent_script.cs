@@ -116,7 +116,7 @@ public class Ivent_script : MonoBehaviour
             switch (iteracia.Count)
             {
                 case 0:
-                    iteracia.Add(0);
+                    iteracia.Add(2);
                     Sobitie.text = "Медсестра готова применить на вас остатки своих врачевательных навыков в обмен на ваши вещи";
                     Player.yslyga = "Лечение";
                     active_button(2);
@@ -124,7 +124,14 @@ public class Ivent_script : MonoBehaviour
                     Deistvie_text[1].text = "> Уйти";
                     break;
                 case 1:
-                    SceneManager.LoadScene("Yslygi");
+                    switch(iteracia[iteracia.Count - 1])
+                    {
+                        case 2: SceneManager.LoadScene("Yslygi"); break;
+                        case 0:
+                            Batle_skript.dist = Random.Range(5, 20)/10f;
+                            Batle_skript.enemy.Add("Полоумная медсестра");
+                            SceneManager.LoadScene("Batle"); break;
+                    }
                     break;
             }
         }
@@ -157,6 +164,7 @@ public class Ivent_script : MonoBehaviour
             switch(iteracia.Count)
             {
                 case 1:
+                    Batle_skript.dist = Random.Range(35, 60)/10f;
                     Batle_skript.enemy.Add("Полоумная медсестра");
                     SceneManager.LoadScene("Batle"); break;
             }

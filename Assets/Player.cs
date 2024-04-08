@@ -37,4 +37,16 @@ public class Player : MonoBehaviour
             return (0);
         }
     }
+    public static int Proverka_Tochnosti(int slojnost, int tochnost)
+    {
+        int h = Random.Range(0, 100);
+        if ((h + (DexStat - 10) * 3) - slojnost + tochnost*10 >= 50)
+        {
+            return (1);
+        }
+        else
+        {
+            return (0);
+        }
+    }
 }

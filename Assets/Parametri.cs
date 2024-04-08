@@ -28,13 +28,13 @@ public class Parametri : MonoBehaviour
         ""
     };
     //перечень оружия
-    public static Tuple<string, int, int, int, int>[] weapons =
+    public static Tuple<string, int[], int, int, int>[] weapons =
     {
-        Tuple.Create("Мосинка", 0, 5, 35, 0),
-        Tuple.Create("СВТ", 0, 10, 30, 1),
-        Tuple.Create("Берданка", 0, 1, 50, 0),
-        Tuple.Create("СКС", 0, 10, 30, 0),
-        Tuple.Create("Мушкетон", 0, 1, 60, -2)
+        Tuple.Create("Мосинка", new int[]{0,0,0}, 5, 35, 0),
+        Tuple.Create("СВТ",new int[]{0,1,1}, 10, 30, 1),
+        Tuple.Create("Берданка", new int[]{0,0,2}, 1, 50, 0),
+        Tuple.Create("СКС", new int[]{0,1,1}, 10, 30, 0),
+        Tuple.Create("Мушкетон", new int[]{0,0,2}, 1, 60, -2)
     };
     //перечень предметов
     public static string[] predmet =
@@ -72,13 +72,18 @@ public class Parametri : MonoBehaviour
             break;
         }
     }
+    //описание врагов
+    public static Tuple<string, int>[] enemy_par =
+    {
+        Tuple.Create("Полоумная медсестра", 100)
+    };
     //перечень врагов
     public static string[] enemy =
     {
         "Полоумная медсестра"
     };
     //поиск параметров предмета
-    public static int Parametr(string predmet,int parametr)
+    public static int[] Parametr(string predmet,int parametr)
     {
         switch(Array.IndexOf(Parametri.predmet, predmet))
         {
@@ -90,14 +95,14 @@ public class Parametri : MonoBehaviour
                         switch(parametr)
                         {
                             case 1: return (weapons[i].Item2);
-                            case 2: return (weapons[i].Item3);
-                            case 3: return (weapons[i].Item4);
-                            case 4: return (weapons[i].Item5);
+                            case 2: return (new int[]{weapons[i].Item3});
+                            case 3: return (new int[]{weapons[i].Item4});
+                            case 4: return (new int[]{weapons[i].Item5});
                         }
                     }
                 }
             break;
         }
-        return 0;
+        return new int[]{};
     }
 }
